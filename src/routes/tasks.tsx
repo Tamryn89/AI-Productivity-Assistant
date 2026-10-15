@@ -38,8 +38,8 @@ function TasksPage() {
   const ev = events.find((e) => e.id === eventId);
 
   const run = async () => {
-    if (!ev) return toast.error("Create or select an event first.");
-    if (daysUntil(ev.date) < 0) return toast.error("This event's date has passed.");
+    if (!ev) { toast.error("Create or select an event first."); return; }
+    if (daysUntil(ev.date) < 0) { toast.error("This event has already passed."); return; }
     setLoading(true);
     try {
       setDraft(await gen({ data: { type: ev.type, name: ev.name, date: ev.date, budget: ev.budget, attendees: ev.attendees, resources } }));
@@ -63,7 +63,7 @@ function TasksPage() {
   const setTask = (id: string, patch: Partial<Task>) => update((s) => ({ ...s, tasks: s.tasks.map((t) => (t.id === id ? { ...t, ...patch } : t)) }));
   const del = (id: string) => update((s) => ({ ...s, tasks: s.tasks.filter((t) => t.id !== id) }));
   const addManual = () => {
-    if (!ev || !newTitle.trim() || !newDate) return toast.error("Enter a task name and deadline.");
+    if (!ev || !newTitle.trim() || !newDate) { toast.error("Enter a task name and deadline."); return; }
     update((s) => ({ ...s, tasks: [...s.tasks, { id: uid(), eventId: ev.id, title: newTitle.trim(), description: "", priority: "Medium", deadline: newDate, status: "pending" }] }));
     setNewTitle(""); setNewDate("");
   };
