@@ -85,7 +85,7 @@ export function clearAll() {
 }
 
 export function validateEvent(e: Partial<EventItem>, today = new Date().toISOString().slice(0, 10)) {
-  const errors: Record<string, string> = {};
+  const errors: Partial<Record<"name" | "type" | "date" | "location" | "attendees" | "budget", string>> = {};
   if (!e.name?.trim()) errors.name = "Event name is required.";
   if (!e.type?.trim()) errors.type = "Event type is required.";
   if (!e.date || isNaN(Date.parse(e.date))) errors.date = "A valid date is required.";

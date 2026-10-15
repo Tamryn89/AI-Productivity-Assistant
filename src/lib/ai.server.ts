@@ -9,7 +9,7 @@ export async function runAI(opts: {
   input: string | ChatTurn[];
   schema?: { name: string; schema: Record<string, unknown> };
 }): Promise<string> {
-  const key = process.env.LOVABLE_API_KEY;
+  const key = process.env['LOVABLE_API_KEY'];
   if (!key) throw new Error("AI is not configured yet. Please set up the AI connection in project settings.");
 
   const body: Record<string, unknown> = {
@@ -22,7 +22,7 @@ export async function runAI(opts: {
     include: ["reasoning.encrypted_content"],
   };
   if (opts.schema) {
-    body.text = { format: { type: "json_schema", name: opts.schema.name, schema: opts.schema.schema, strict: true } };
+    body['text'] = { format: { type: "json_schema", name: opts.schema.name, schema: opts.schema.schema, strict: true } };
   }
 
   const res = await fetch(GATEWAY, {

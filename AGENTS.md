@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- App data (events, tasks, notes) lives in browser storage via `src/lib/store.ts`; why: first version runs without accounts. Move to Lovable Cloud if multi-device/user sync is needed.
+- All AI calls go through server functions in `src/lib/ai.functions.ts` using `src/lib/ai.server.ts`; why: keeps the AI key server-side and prompts in one place.

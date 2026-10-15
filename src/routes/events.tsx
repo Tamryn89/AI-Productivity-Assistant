@@ -38,7 +38,7 @@ function EventsPage() {
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState("All");
   const [form, setForm] = useState<Partial<EventItem> | null>(null);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
 
   const list = events
     .filter((e) => (filter === "All" || e.status === filter) && `${e.name} ${e.location} ${e.type}`.toLowerCase().includes(q.toLowerCase()))

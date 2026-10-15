@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CalendarDays, CheckCircle2, Clock, Sparkles as _s, Mail, ListChecks, NotebookPen, Wallet, MessageCircle, Plus, Bot } from "lucide-react";
+import { CalendarDays, CheckCircle2, Clock, Mail, ListChecks, NotebookPen, Wallet, MessageCircle, Plus, Bot } from "lucide-react";
 import { useStore, fmtDate, daysUntil, money } from "@/lib/store";
 import { PageHeader, ResponsibleAINotice, DemoBadge } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
 
-void _s;
 
 export const Route = createFileRoute("/")({
   head: () => ({
